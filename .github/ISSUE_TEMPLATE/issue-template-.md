@@ -2,8 +2,8 @@
 name: 'Issue Template '
 about: Feature Issue Template
 title: ''
-labels: bug, documentation, duplicate, enhancement, good first issue, help wanted,
-  invalid, question, wontfix
+labels: bug, documentation, duplicate, enhancement, feature, good first issue, help
+  wanted, invalid, question, wontfix
 assignees: ''
 
 ---
