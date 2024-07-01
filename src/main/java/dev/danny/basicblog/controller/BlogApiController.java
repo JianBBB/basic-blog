@@ -36,11 +36,20 @@ public class BlogApiController {
                 .body(articles);
     }
 
+    //블로그 글 조회하는 API 메서드
     @GetMapping("/api/articles/{id}")
     public ResponseEntity<ArticleResponse> findArticle(@PathVariable Long id){
         Article article = blogService.findById(id);
 
         return ResponseEntity.ok()
                 .body(new ArticleResponse(article));
+    }
+
+    //블로그 글 삭제하는 API 메서드
+    @DeleteMapping("/api/articles/{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable Long id){
+        blogService.delete(id);
+
+        return ResponseEntity.ok().build();
     }
 }
