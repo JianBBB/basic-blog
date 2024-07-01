@@ -134,4 +134,23 @@ class BlogApiControllerTest {
                 .andExpect(jsonPath("$.title").value(title))
                 .andExpect(jsonPath("$.content").value(content));
     }
+
+    @DisplayName("deleteArticle: 블로그 글 삭제에 성공한다.")
+    @Test
+    public void deleteArticle() throws Exception {
+        //given
+        final String title = "title";
+        final String content = "content";
+        final String url = "/api/articles/{id}";
+        Article savedArticle = saveArticle(title, content);
+
+        //when
+        ResultActions result = mockMvc.perform(delete(url, savedArticle.getId()));
+
+        //then
+        result.andExpect(status().isOk());
+        List<Article> articles = blogRepository.findAll();
+        assertThat(articles).isEmpty();
+
+    }
 }
