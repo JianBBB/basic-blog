@@ -106,6 +106,10 @@ class BlogApiControllerTest {
                 .andExpect(jsonPath("$[1].title").value(title2))
                 .andExpect(jsonPath("$[1].content").value(content2));
 
+        //개수 비교 추가
+        List<Article> articles = blogRepository.findAll();
+        assertThat(articles.size()).isEqualTo(2);
+
     }
 
     public Article saveArticle(String title, String content) {
