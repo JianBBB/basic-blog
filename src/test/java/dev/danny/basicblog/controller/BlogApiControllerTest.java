@@ -108,10 +108,30 @@ class BlogApiControllerTest {
 
     }
 
-    public void saveArticle(String title, String content) {
-        blogRepository.save(Article.builder()
+    public Article saveArticle(String title, String content) {
+        Article savedArticle = blogRepository.save(Article.builder()
                 .title(title)
                 .content(content)
                 .build());
+        return savedArticle;
+    }
+
+    @DisplayName("findArticle: 블로그 글 조회에 성공한다.")
+    @Test
+    public void findArticle() throws Exception {
+        //given
+        final String title = "title";
+        final String content = "content";
+        final String url = "/api/articles/{id}";
+        // 저장
+        Article savedArticle = saveArticle(title,content);
+
+        //when
+        ResultActions resultActions = mockMvc.perform(get(url, savedArticle.getId()));
+
+        //then
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value(title))
+                .andExpect(jsonPath("$.content").value(content));
     }
 }
