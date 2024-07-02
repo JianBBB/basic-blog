@@ -172,9 +172,13 @@ class BlogApiControllerTest {
         //변경을 위한 글
         final String newTitle = "new title";
         final String newContent = "new content";
-        UpdateArticleRequest request = new UpdateArticleRequest();
-        request.setTitle(newTitle);
-        request.setContent(newContent);
+        UpdateArticleRequest request = UpdateArticleRequest.builder()
+                .title(newTitle)
+                .content(newContent)
+                .build();
+        // UpdateArticleRequest request = new UpdateArticleRequest();
+        //request.setTitle(newTitle);
+        // request.setContent(newContent);
 
         //url을 위한 값
         final String url = "/api/articles/{id}";
