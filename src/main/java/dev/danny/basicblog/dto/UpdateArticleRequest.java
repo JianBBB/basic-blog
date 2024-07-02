@@ -1,16 +1,17 @@
 package dev.danny.basicblog.dto;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @Getter
-@Setter
 public class UpdateArticleRequest {
     private String title;
     private String content;
 
 
+    @Builder
+    public UpdateArticleRequest(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }
