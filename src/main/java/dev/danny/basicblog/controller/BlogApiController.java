@@ -4,6 +4,7 @@ import dev.danny.basicblog.domain.Article;
 import dev.danny.basicblog.dto.AddArticleRequest;
 import dev.danny.basicblog.dto.ArticleResponse;
 import dev.danny.basicblog.dto.UpdateArticleRequest;
+import dev.danny.basicblog.dto.UpdateArticleResponse;
 import dev.danny.basicblog.service.BlogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -56,11 +57,11 @@ public class BlogApiController {
 
     //블로그 글 수정하는 API 메서드
     @PutMapping("/api/articles/{id}")
-    public ResponseEntity<Article> updateArticle(@PathVariable Long id,
+    public ResponseEntity<UpdateArticleResponse> updateArticle(@PathVariable Long id,
                                                  @RequestBody UpdateArticleRequest request){
-        Article updatedArticle = blogService.update(id, request);
+        UpdateArticleResponse result = blogService.update(id, request);
 
         return ResponseEntity.ok()
-                .body(updatedArticle);
+                .body(result);
     }
 }
