@@ -3,6 +3,7 @@ package dev.danny.basicblog.service;
 import dev.danny.basicblog.domain.Article;
 import dev.danny.basicblog.dto.AddArticleRequest;
 import dev.danny.basicblog.dto.UpdateArticleRequest;
+import dev.danny.basicblog.dto.UpdateArticleResponse;
 import dev.danny.basicblog.repository.BlogRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -38,12 +39,13 @@ public class BlogService {
 
     //블로그 글 수정 메서드
     @Transactional
-    public Article update(long id, UpdateArticleRequest request){
+    public UpdateArticleResponse update(long id, UpdateArticleRequest request){
         Article article = blogRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("not found :" + id));
 
         article.update(request.getTitle(),request.getContent());
+        UpdateArticleResponse updateArticleResponse = new UpdateArticleResponse(article);
 
-        return article;
+        return updateArticleResponse;
     }
 }
