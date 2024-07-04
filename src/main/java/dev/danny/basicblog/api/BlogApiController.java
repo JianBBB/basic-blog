@@ -1,4 +1,4 @@
-package dev.danny.basicblog.controller;
+package dev.danny.basicblog.api;
 
 import dev.danny.basicblog.domain.Article;
 import dev.danny.basicblog.dto.AddArticleRequest;
