@@ -13,6 +13,6 @@ spring:
   h2:
     console:
       enabled: true
-  jwt:
-    issuer: sbganne@naver.com
-    secret_key: basic-blog
+jwt:
+  issuer: ajufresh@gmail.com
+  secret_key: basic-blog
